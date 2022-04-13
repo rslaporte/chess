@@ -14,6 +14,9 @@ board.removePiece('D2')
 board.removePiece('D1')
 board.removePiece('F1')
 board.removePiece('G1')
+board.removePiece('F2')
+board.removePiece('C1')
+board.removePiece('B1')
 
 //board.removePiece('A2')
 
@@ -23,4 +26,4 @@ board.removePiece('G1')
 
 //King.moves(board)
 board.castle()
-King.moves(board)
+board.board[0][4].moves(board)

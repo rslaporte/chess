@@ -64,35 +64,35 @@ export class Board{
     }
 
     castle() {
-      const Kings = this.pieceOnBoard('K').filter(king => {return !king.haveMoved})
-      const Rooks = this.pieceOnBoard('R').filter(rook => {return !rook.haveMoved})   
+        const Kings = this.pieceOnBoard('K').filter(king => {return !king.haveMoved})
+        const Rooks = this.pieceOnBoard('R').filter(rook => {return !rook.haveMoved})          
         
         Kings.map(king => {
-            let castleRooks = Rooks.filter(rook => {return rook.color === king.color})
+            const castleRooks = Rooks.filter(rook => {return rook.color === king.color})
+            const kingRow = JSCoordinates(king.position).row
+            const kingColumn = JSCoordinates(king.position).column
         
             castleRooks.map(rook => {
-                const rookRow = JSCoordinates(rook.position).column
-                const kingRow = JSCoordinates(king.position).column
-                const kingColumn = JSCoordinates(king.position).row
-                console.log(kingRow)
+                const rookColumn = JSCoordinates(rook.position).column                
 
-                if(rookRow - kingRow < 0) {
-                    const square1 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(-1,0))) == '0' ? true : false
-                    const square2 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(-2,0))) == '0' ? true : false
+                if(rookColumn - kingColumn < 0) {
+                    const square1 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(-1, 0))) == '0' ? true : false
+                    const square2 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(-2, 0))) == '0' ? true : false
+                    const square3 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(-3, 0))) == '0' ? true : false
 
-                    if(square1 && square2) this.board[kingRow][kingColumn].directions.push(new Vector(-2, 0))
+                    if(square1 && square2 && square3) this.board[kingRow][kingColumn].directions.push(new Vector(-2, 0))
                 }
 
                 else {
-                    const square1 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(1,0))) == '0' ? true : false
-                    const square2 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(2,0))) == '0' ? true : false
+                    const square1 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(1, 0))) == '0' ? true : false
+                    const square2 = this.positionStatus(JSCoordinates(king.position).sum(new Vector(2, 0))) == '0' ? true : false
 
-                    if(square1 && square2) this.board[kingRow][kingColumn].directions.push(new Vector(-2, 0))
-                
+                    if(square1 && square2) this.board[kingRow][kingColumn].directions.push(new Vector(2, 0))                
                 }
 
-                //console.log(this.board[kingRow][kingColumn])
+                
             })
+            console.log(this.board[kingRow][kingColumn])
         })
     }
     
