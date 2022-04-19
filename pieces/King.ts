@@ -2,7 +2,6 @@ import { Piece } from '../Piece'
 import { Vector } from '../Vector'
 
 export class King extends Piece {
-    
     type = 'K'
     isUnitary = true
     directions = [

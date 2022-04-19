@@ -22,4 +22,14 @@ export class Vector {
     scalarProduct(vector: Vector) : number {
         return (this.row)*(vector.row) + (this.column)*(vector.column)
     }
+
+    subtraction(vector: Vector) : Vector {
+        return new Vector(this.row - vector.row, this.column - vector.column)
+    }
+
+    module() : number {
+        return ((this.row)**2 + (this.column)**2)**0.5
+    }
+
+
 }
